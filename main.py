@@ -31,11 +31,22 @@ class BlogPost(db.Model):
     create = db.DateTimeProperty(auto_now_add = True)
 
 class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        self.redirect('/blog')
+
+class BlogHandler(webapp2.RequestHandler):
+    def get(self):
+        posts = db.GqlQuery("SELECT * FROM BlogPost ORDER BY create DESC LIMIT 5")
+
+        t = jinja_env.get_template("blog.html")
+        content = t.render(posts=posts)
+        self.response.write(content)
+
+class NewPostHandler(webapp2.RequestHandler):
     def render_front(self, subject="", blog="", error=""):
-        posts = db.GqlQuery("SELECT * FROM BlogPost")
 
         t = jinja_env.get_template("newpost.html")
-        content = t.render(subject = subject, blog=blog, error=error, posts=posts)
+        content = t.render(subject = subject, blog=blog, error=error)
         self.response.write(content)
 
     def get(self):
@@ -55,5 +66,7 @@ class MainHandler(webapp2.RequestHandler):
             self.render_front(subject, blog, error)
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/newpost', NewPostHandler),
+    ('/blog', BlogHandler)
 ], debug=True)
