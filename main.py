@@ -65,8 +65,16 @@ class NewPostHandler(webapp2.RequestHandler):
             error = "you must have a subject and a blog post"
             self.render_front(subject, blog, error)
 
+class ViewPostHandler(webapp2.RequestHandler):
+    def get(self, blog_id):
+        blog = BlogPost.get_by_id(int(blog_id))
+        t = jinja_env.get_template("post.html")
+        content = t.render(blog=blog)
+        self.response.write(content)
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/newpost', NewPostHandler),
-    ('/blog', BlogHandler)
+    ('/blog', BlogHandler),
+    webapp2.Route('/blog/<blog_id:\d+>', ViewPostHandler)
 ], debug=True)
