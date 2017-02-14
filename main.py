@@ -60,7 +60,7 @@ class NewPostHandler(webapp2.RequestHandler):
             a = BlogPost(subject=subject, blog=blog)
             a.put()
 
-            self.redirect('/')
+            self.redirect('/blog/'+ str(a.key().id()))
         else:
             error = "you must have a subject and a blog post"
             self.render_front(subject, blog, error)

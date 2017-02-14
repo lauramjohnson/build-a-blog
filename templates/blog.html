@@ -8,9 +8,10 @@
 
 {% for blog in posts %}
     <div class = "blog">
-        <div class = "blog-subject"> {{ blog.subject }}</div>
+        <a href="/blog/{{ blog.key().id() }}"><div class = "blog-subject"> {{ blog.subject }}</div></a>
         <div class = "blog-create"> {{ blog.create}}</div>
         <pre class = "blog-post"> {{ blog.blog }}</div>
+
     </div>
 <hr>
 {% endfor %}
