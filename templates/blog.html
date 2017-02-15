@@ -25,8 +25,9 @@
     {% if pageno > 1 %}
     <button class="previous"><a id="newpostbutton" href="/blog?page={{ (pageno - 1) }}">&lt&lt Previous</a></button>
     {% endif %}
+    {% if postcount != 0 %}
     <button class="Next"><a id="newpostbutton" href="/blog?page={{ (pageno + 1)}}">Next &gt&gt</a></button>
- 
+    {% endif %}
 </div>
 
 

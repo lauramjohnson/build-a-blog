@@ -47,8 +47,10 @@ class BlogHandler(webapp2.RequestHandler):
         offset = int(limit) * int(page) - int(limit)
         posts = get_posts(limit, offset)
 
+        postcount = posts.count(offset=offset+limit, limit=limit)
+
         t = jinja_env.get_template("blog.html")
-        content = t.render(posts=posts, pageno=int(page))
+        content = t.render(posts=posts, pageno=int(page), postcount=int(postcount))
         self.response.write(content)
 
 class NewPostHandler(webapp2.RequestHandler):
