@@ -20,6 +20,7 @@ import cgi
 import jinja2
 import os
 
+from datetime import datetime
 from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")

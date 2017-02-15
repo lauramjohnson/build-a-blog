@@ -1,0 +1,47 @@
+body{
+    font-family: Verdana, Helvetica, sans-serif;
+    background-color: lavenderblush;
+}
+
+h3{
+    color: IndianRed;
+}
+.error{
+    color: red;
+}
+.blog-subject{
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    color: teal;
+}
+
+.blog-create{
+    float: right;
+    font-size: 10px;
+    justify-content: right;
+    display: inline-block;
+    color: teal;
+    padding-top: 10px;
+}
+
+.blog-post{
+    padding-bottom: 20px;
+    width: auto;
+    height: 100%;
+    white-space: normal;
+}
+#newpostbutton, #takemeback{
+    text-decoration: none;
+    color:black;
+}
+
+.sub_input{
+
+}
+
+.blog_input{
+    width: 400px;
+    height: 200px;
+    resize: none;
+}

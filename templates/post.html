@@ -2,17 +2,19 @@
 
 {% block content %}
 
-<div name="top">
-    <a href="/newpost">Click here to make a new post</a>
-</div>
 
 
 <div class = "blog">
     <div class = "blog-subject"> {{ blog.subject }}</div>
-    <div class = "blog-create"> {{ blog.create}}</div>
+    <div class = "blog-create"> {{ blog.create.strftime('%B %d, %Y %I:%M:%S %p UST') }}</div>
+    <hr>
     <pre class = "blog-post"> {{ blog.blog }}</div>
+    <hr>
 </div>
-
-
-
+<div class="bottom_button">
+    <button class="newpost"><a id="newpostbutton" href="/newpost">New Post</a></button>
+<button>
+    <a id="takemeback" href="/blog">Take me back to the blog</a>
+</button>
+</div>
 {% endblock %}

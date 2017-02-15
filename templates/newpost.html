@@ -2,29 +2,24 @@
 
 {% block content %}
 
-<div name="oops">Ooops, I didn't want to make a post, take me to the blog!</div>
-    <button>
-        <a href="/blog">Get me outta here!</a>
-    </button>
-</div>
-
-<h1>New Post</h1>
+<h3>New Post</h3>
 
 <form method="post">
     <label>
         <div>Subject</div>
-        <input type="text" name="subject" value= {{ subject }}>
+        <input class="sub_input" type="text" name="subject" value= {{ subject }}>
     </label>
-
+    <br><br>
     <label>
         <div>Blog</div>
-        <textarea name="blog">{{ blog }}</textarea>
+        <textarea class="blog_input" name="blog">{{ blog }}</textarea>
     </label>
 
     <div class="error">{{ error if error else "" }}</div>
     <button>Post it!</button>
-
-<hr>
+    <button>
+        <a id="takemeback" href="/blog">Take me back to the blog</a>
+    </button>
 
 {% for blog in posts %}
     <div class = "blog">
