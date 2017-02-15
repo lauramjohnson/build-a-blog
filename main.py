@@ -35,12 +35,20 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.redirect('/blog')
 
+def get_posts(xlimit, xoffset):
+        return db.GqlQuery("SELECT * FROM BlogPost ORDER BY create DESC LIMIT " + str(xlimit) +" OFFSET " + str(xoffset))
+
 class BlogHandler(webapp2.RequestHandler):
     def get(self):
-        posts = db.GqlQuery("SELECT * FROM BlogPost ORDER BY create DESC LIMIT 5")
+        page = 1
+        if self.request.get("page"):
+            page = str(self.request.get("page"))
+        limit = 5
+        offset = int(limit) * int(page) - int(limit)
+        posts = get_posts(limit, offset)
 
         t = jinja_env.get_template("blog.html")
-        content = t.render(posts=posts)
+        content = t.render(posts=posts, pageno=int(page))
         self.response.write(content)
 
 class NewPostHandler(webapp2.RequestHandler):
