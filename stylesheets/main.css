@@ -29,7 +29,7 @@ h3{
     padding-bottom: 20px;
     width: auto;
     height: 100%;
-    white-space: normal;
+    white-space: pre-line;;
 }
 #newpostbutton, #takemeback{
     text-decoration: none;
